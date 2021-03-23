@@ -327,6 +327,7 @@ def initializeQueue(student):
     gd = GlobalDictionary()
 
     for takenCourseID in student.taken:
+        print(takenCourseID)
         takenCourse = gd.classes[takenCourseID]
 
         for childID in takenCourse.children:
@@ -462,6 +463,14 @@ def fastPath(student, creditThreshold):
     return allSems
 
 
+def parseOptions(formInputDict):
+    keysToIgnore = ['first_name', 'school', 'degree', 'major', 'submit']
+    foundKeys = []
+    for key in formInputDict.keys():
+        if (key not in keysToIgnore):
+            foundKeys.append(key)
+    return foundKeys
+
 @app.route("/")
 def index():
     return render_template('init.html')
@@ -470,7 +479,8 @@ def index():
 def student():
     if request.method == 'POST':
         formObj = request.form
-        print(formObj)
+        print(dict(formObj))
+        takenCourses = parseOptions(dict(formObj))
         # CS121: 72717
         # cs187: 72718
         # m131: 72684
@@ -480,6 +490,9 @@ def student():
         # cs230: 72752
         # cs240: 72748
         # cs250: 72721
+        validBeginnings = [72721, 72748, 72752, 72751, 76889, 76932, 72684, 72718, 72717]
+        takenCourses = [int(x) for x in takenCourses if x in validBeginnings]
+        print(takenCourses)
 
         # Software engineering: SOFTENG
         # Artifical Intelligence : AI
@@ -489,18 +502,16 @@ def student():
         # Computer Architecture : THEORYCMP
         # Networking:NETWORK
         # Software Systems : SOFTSYS
-        s = Student([72717,72684],"AI",8)
+        s = Student(takenCourses,"AI", 4 * len(takenCourses))
 
 
 
-        schedule = fastPath(s,19)
+        schedule = fastPath(s,17)
         for i in schedule:
             for p in i:
                 print(p.name)
         return render_template('display.html',schedule=schedule)
-        s = Student([],"AI",0)
-        sched = fastPath(s,18)
-        return render_template('display.html', schedule=sched)
+        
 
 if __name__ == "__main__":
     app.run(debug = True)
