@@ -5,14 +5,18 @@ Since it's a hackathon project, it's not the neatest project in the world - ther
 
 
 ## How to Install
-Just download the repo and run: 
+Download this GitHub repo, navigate to the directory you saved it to, and type: 
+`pip install -r requirements.txt`
+This will install the required libraries.
+
+
+## How to Use
+Navigate to the directory you've got gradu8 in, and run: 
 
 `python gradu8.py`
 
 This'll launch the Flask application, which you can then reach from any browser by navigating to 'http://127.0.0.1:5000/'
 
-
-## How to Use
 Once you have gradu8 open, you can just scroll down to the pre-requisite form near the bottom of the screen. (Most of the form was for demo purposes, and doesn't actually affect the performance of the course planner.) Here, you can fill out courses you've already taken, and then click "Submit" to see your custom schedule! 
 
 ![A screenshot of gradu8's course-selection checklist](https://i.imgur.com/FJsJknA.png)
