@@ -6,7 +6,9 @@ Since it's a hackathon project, it's not the neatest project in the world - ther
 
 ## How to Install
 Download this GitHub repo, navigate to the directory you saved it to, and type: 
+
 `pip install -r requirements.txt`
+
 This will install the required libraries.
 
 
